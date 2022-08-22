@@ -1,10 +1,15 @@
 from objects import Dimensions
-from validation import correct_size
+from errors import size_error
 
 
 def get_mx_size(mx_number: int) -> Dimensions:
-    lines, stripes = input(f'Введите размеры {mx_number} матрицы через знак "|": ').split('|')
-    return Dimensions(lines, stripes)
+    f = True
+    while f:
+        try:
+            lines, stripes = map(int, input(f'Введите размеры {mx_number} матрицы через знак "|": ').split('|'))
+            return Dimensions(lines, stripes)
+        except ValueError:
+            print(size_error())
 
 
 def get_num_matrices() -> int:

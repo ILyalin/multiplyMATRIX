@@ -7,15 +7,7 @@ from objects import Dimensions
 
 def sizing(matrix_num: int) -> Dimensions:
     matrix_number: int = matrix_num
-    f = True
     size_matrix: Dimensions = get_mx_size(mx_number=matrix_number)
-    while f:
-        if not correct_size(size_matrix):
-            print(size_error())
-            size_matrix: Dimensions = get_mx_size(mx_number=matrix_number)
-        else:
-            f = False
-    print(size_matrix, 'sizing')
     return size_matrix
 
 
