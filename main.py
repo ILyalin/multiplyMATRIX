@@ -1,13 +1,13 @@
 from dimensions import final_mx_dimension
 from dimensions import find_summation_index
 from dimensions import sizing
-from errors import element_error, muliply_error
-from inputs import get_num_matrices, get_line_element
+from elements import filling_elements_in_line,zero_padding_matrix
+from errors import muliply_error
+from inputs import get_num_matrices
 from messages import line_input
 from multiplication import multiply
 from objects import Dimensions
-from validation import correct_element, correct_for_multiply
-from elements import filling_elements_in_line
+from validation import correct_for_multiply
 
 
 def main():
@@ -23,8 +23,11 @@ def main():
                 matrices.append(matrix)
             summation_index = find_summation_index(matrices_dimensions[0])
             final_mx_size = final_mx_dimension(size_mx1=matrices_dimensions[0], size_mx2=matrices_dimensions[1])
-            print(final_mx_size)
-            print(summation_index)
+            final_matrix = zero_padding_matrix(final_mx_size)
+            print(final_mx_size,'size')
+            print(summation_index,'index')
+            print(matrices)
+            print(final_matrix)
             for line in range(final_mx_size.lines):
                 for stripe in range(final_mx_size.stripes):
                     for index in range(summation_index):
