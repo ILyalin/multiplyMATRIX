@@ -8,6 +8,7 @@ def get_mx_size(mx_number: int) -> Dimensions:
         try:
             lines, stripes = map(int, input(f'Введите размеры {mx_number} матрицы через знак "|": ').split('|'))
             return Dimensions(lines, stripes)
+
         except ValueError:
             print(size_error())
 

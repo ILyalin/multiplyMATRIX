@@ -1,8 +1,9 @@
 from validation import correct_size
 from dataclasses import dataclass
 from inputs import get_mx_size
-from errors import size_error
+from errors import muliply_error
 from objects import Dimensions
+from validation import correct_for_multiply
 
 
 def sizing(matrix_num: int) -> Dimensions:
