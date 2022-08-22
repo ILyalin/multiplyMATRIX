@@ -7,6 +7,7 @@ from messages import line_input
 from multiplication import multiply
 from objects import Dimensions
 from validation import correct_element, correct_for_multiply
+from elements import filling_elements_in_line
 
 
 def main():
@@ -22,11 +23,14 @@ def main():
                 matrices.append(matrix)
             summation_index = find_summation_index(matrices_dimensions[0])
             final_mx_size = final_mx_dimension(size_mx1=matrices_dimensions[0], size_mx2=matrices_dimensions[1])
+            print(final_mx_size)
+            print(summation_index)
             for line in range(final_mx_size.lines):
                 for stripe in range(final_mx_size.stripes):
                     for index in range(summation_index):
-                        final_matrix[line][stripe] = multiply(first_mx=matrices[0], second_mx=matrices[1],
-                                                              summ_index=summation_index, line=line, stripe=stripe)
+                        final_matrix[line][stripe]: int = multiply(first_mx=matrices[0], second_mx=matrices[1],
+                                                                   summ_index=summation_index, line=line, stripe=stripe)
+                        print(final_matrix)
                         f = False
         else:
             print(muliply_error())
@@ -46,12 +50,7 @@ def set_mx_elements(matrix_num: int, matrix_size: Dimensions) -> list[list]:
     matrix = []
     for line in range(1, matrix_size.lines + 1):
         print(line_input(line=line, matrix_num=matrix_num))
-        line = []
-        for stripe in range(matrix_size.stripes):
-            element = get_line_element(stripe=stripe)
-            while not correct_element(element):
-                print(element_error())
-            line.append(element)
+        line = filling_elements_in_line(mx_size=matrix_size)
         matrix.append(line)
     return matrix
 

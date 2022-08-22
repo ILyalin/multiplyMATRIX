@@ -8,3 +8,7 @@ def size_error() -> str:
 
 def element_error() -> str:
     return 'Введен невалидный символ!\nВведите корректный элемент'
+
+
+def mx_number_error() -> str:
+    return 'Введено невалидное количество матриц\nВведите количество матриц'

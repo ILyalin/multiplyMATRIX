@@ -1,5 +1,5 @@
 from objects import Dimensions
-from errors import size_error
+from errors import size_error, element_error, mx_number_error
 
 
 def get_mx_size(mx_number: int) -> Dimensions:
@@ -14,8 +14,20 @@ def get_mx_size(mx_number: int) -> Dimensions:
 
 
 def get_num_matrices() -> int:
-    return int(input('Введите кол-во матриц в произведении: '))
+    f = True
+    while f:
+        try:
+            return int(input('Введите кол-во матриц в произведении: '))
+        except ValueError:
+            print(mx_number_error())
+            return int(input('Введите кол-во матриц в произведении: '))
 
 
 def get_line_element(stripe: int) -> int:
-    return int(input(f'{stripe + 1}. '))
+    f = True
+    while f:
+        try:
+            return int(input(f'{stripe + 1}. '))
+        except ValueError:
+            print(element_error())
+            return int(input(f'{stripe + 1}. '))
