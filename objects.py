@@ -8,6 +8,5 @@ class Dimensions:
 
 
 @dataclass
-class Element:
-    line: int
-    stripe: int
+class Elements:
+    pass

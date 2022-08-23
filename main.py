@@ -1,13 +1,13 @@
 from dimensions import final_mx_dimension
 from dimensions import find_summation_index
-from dimensions import sizing
-from elements import filling_elements_in_line,zero_padding_matrix
+from elements import zero_padding_matrix
 from errors import muliply_error
 from inputs import get_num_matrices
-from messages import line_input
 from multiplication import multiply
 from objects import Dimensions
+from settings import set_mts_dimensions, set_mx_elements
 from validation import correct_for_multiply
+from messages import finished_mx_out
 
 
 def main():
@@ -24,39 +24,21 @@ def main():
             summation_index = find_summation_index(matrices_dimensions[0])
             final_mx_size = final_mx_dimension(size_mx1=matrices_dimensions[0], size_mx2=matrices_dimensions[1])
             final_matrix = zero_padding_matrix(final_mx_size)
-            print(final_mx_size,'size')
-            print(summation_index,'index')
-            print(matrices)
-            print(final_matrix)
             for line in range(final_mx_size.lines):
                 for stripe in range(final_mx_size.stripes):
+                    element = 0
                     for index in range(summation_index):
-                        final_matrix[line][stripe]: int = multiply(first_mx=matrices[0], second_mx=matrices[1],
-                                                                   summ_index=summation_index, line=line, stripe=stripe)
-                        print(final_matrix)
+                        element += multiply(first_mx=matrices[0], second_mx=matrices[1], summ_index=index, line=line,
+                                            stripe=stripe)
                         f = False
+                    final_matrix[line][stripe] = element
         else:
             print(muliply_error())
             matrices_dimensions: list[Dimensions] = set_mts_dimensions(mts_number=matrices_number)
     return final_matrix
 
 
-def set_mts_dimensions(mts_number: int) -> list[Dimensions]:
-    matrices_dimensions: list[Dimensions] = []
-    for mx_num in range(1, mts_number + 1):
-        matrix_size: Dimensions = sizing(mx_num)
-        matrices_dimensions.append(matrix_size)
-    return matrices_dimensions
-
-
-def set_mx_elements(matrix_num: int, matrix_size: Dimensions) -> list[list]:
-    matrix = []
-    for line in range(1, matrix_size.lines + 1):
-        print(line_input(line=line, matrix_num=matrix_num))
-        line = filling_elements_in_line(mx_size=matrix_size)
-        matrix.append(line)
-    return matrix
-
-
 if __name__ == '__main__':
-    main()
+    matrix_out = finished_mx_out(main())
+    print(matrix_out)
+

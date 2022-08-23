@@ -1,5 +1,5 @@
-from objects import Dimensions
 from errors import size_error, element_error, mx_number_error
+from objects import Dimensions
 
 
 def get_mx_size(mx_number: int) -> Dimensions:
